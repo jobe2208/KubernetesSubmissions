@@ -7,7 +7,17 @@ PORT = int(os.getenv("PORT", 8080))
 
 @app.route("/")
 def home():
-    return "Server started"
+    return """
+    <html>
+        <head>
+            <title>Todo Application</title>
+        </head>
+        <body>
+            <h1>Todo Application</h1>
+            <p>My application is running inside Kubernetes!</p>
+        </body>
+    </html>
+    """
 
 if __name__ == "__main__":
     print(f"Server started in port {PORT}", flush=True)

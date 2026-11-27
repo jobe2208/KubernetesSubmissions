@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-generator-2-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-generator-2-1
+  template:
+    metadata:
+      labels:
+        app: log-generator-2-1
+    spec:
+      containers:
+        - name: log-generator
+          image: log-generator:2.1
+          imagePullPolicy: Never

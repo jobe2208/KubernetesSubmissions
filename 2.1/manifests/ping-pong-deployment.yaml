@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-pong-2-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ping-pong-2-1
+  template:
+    metadata:
+      labels:
+        app: ping-pong-2-1
+    spec:
+      volumes:
+        - name: ping-pong-storage
+          persistentVolumeClaim:
+            claimName: ping-pong-2-1-pvc
+      containers:
+        - name: ping-pong
+          image: ping-pong:2.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: ping-pong-storage
+              mountPath: /usr/src/app/files
